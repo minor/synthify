@@ -26,7 +26,7 @@ export default function Home() {
     setIsLoading(true);
     let prompt;
     if (dataType === "tabular") {
-      prompt = `I would like you to create more synthetic data for the following dataset, which is delimited by three dashes (-). The primary purpose of synthetic data is to provide a substitute for real data through prediction. This synthetic data should mimic the characteristics of the real data, but should not contain information from the actual data. Produce a deep dataset of synthetic data that is at least double the size of the input data. The synthetic data should be about: ${inputText}. Regardless of if it's possible to create "accurate" synthetic data, make sure your response is solely synthetic data and no other text.\n---Data: ${tabularData}\m---`;
+      prompt = `I would like you to create more synthetic data for the following dataset, which is delimited by three dashes (-). The primary purpose of synthetic data is to provide a substitute for real data through prediction. This synthetic data should mimic the characteristics of the real data, but should not contain information from the actual data. Produce a deep dataset of synthetic data that is at least double the size of the input data. The synthetic data should be about: ${inputText}. Regardless of if it&apos;s possible to create "accurate" synthetic data, make sure your response is solely synthetic data and no other text.\n---Data: ${tabularData}\m---`;
     } else {
       prompt = inputText;
     }
@@ -148,8 +148,8 @@ export default function Home() {
             </h1>
             <p className="text-xl max-w-xl mx-auto text-center text-gray-600">
               Give us a small data sample along with a prompt of the data that
-              you'd like and we'll get state-of-the-art LLMs to generate
-              synthetic data for your next project.
+              you&apos;d like and we&apos;ll get state-of-the-art LLMs to
+              generate synthetic data for your next project.
             </p>
           </div>
           <div className="mt-8">
