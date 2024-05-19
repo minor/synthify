@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useEdgeStore } from "./lib/edgestore";
 import OpenAI from "openai";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY as string);
 
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
 
