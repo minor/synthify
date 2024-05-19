@@ -216,8 +216,8 @@ export default function Home() {
             ) : (
               <div className="mt-4">
                 <p className="text-red-500 font-semibold">
-                  I ran out of OpenAI credits so this won't work (please check
-                  video!), but the tabular section will work.
+                  I ran out of OpenAI credits so this won&apos;t work (please
+                  check video!), but the tabular section will work.
                 </p>
                 <input
                   type="text"
