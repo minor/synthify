@@ -2,16 +2,16 @@
 import { useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useEdgeStore } from "./lib/edgestore";
-import OpenAI from "openai";
+// import OpenAI from "openai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY as string);
 
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true,
-});
+// const openai = new OpenAI({
+//   apiKey: process.env.OPENAI_API_KEY,
+//   dangerouslyAllowBrowser: true,
+// });
 
 export default function Home() {
   const [dataType, setDataType] = useState("tabular");
@@ -71,36 +71,36 @@ export default function Home() {
     }
   };
 
-  const handleGenerateImage = async () => {
-    setIsLoading(true);
-    let prompt;
-    if (dataType === "tabular") {
-      prompt = `${imageDataDescription}`;
-    } else {
-      prompt = imageDataDescription;
-    }
+  // const handleGenerateImage = async () => {
+  //   setIsLoading(true);
+  //   let prompt;
+  //   if (dataType === "tabular") {
+  //     prompt = `${imageDataDescription}`;
+  //   } else {
+  //     prompt = imageDataDescription;
+  //   }
 
-    try {
-      const generatedUrls = [];
-      for (let i = 0; i < 10; i++) {
-        const response = await openai.images.generate({
-          model: "dall-e-3",
-          prompt: prompt,
-          n: 1,
-          size: "1024x1024",
-        });
-        const imageUrl = response.data[0].url;
-        if (imageUrl) {
-          generatedUrls.push(imageUrl);
-        }
-      }
-      setGeneratedImageUrls(generatedUrls);
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error generating data:", error);
-      setIsLoading(false);
-    }
-  };
+  //   try {
+  //     const generatedUrls = [];
+  //     for (let i = 0; i < 10; i++) {
+  //       const response = await openai.images.generate({
+  //         model: "dall-e-3",
+  //         prompt: prompt,
+  //         n: 1,
+  //         size: "1024x1024",
+  //       });
+  //       const imageUrl = response.data[0].url;
+  //       if (imageUrl) {
+  //         generatedUrls.push(imageUrl);
+  //       }
+  //     }
+  //     setGeneratedImageUrls(generatedUrls);
+  //     setIsLoading(false);
+  //   } catch (error) {
+  //     console.error("Error generating data:", error);
+  //     setIsLoading(false);
+  //   }
+  // };
 
   return (
     <main className="antialiased min-h-screen bg-gray-50 text-gray-900">
@@ -215,6 +215,10 @@ export default function Home() {
               </div>
             ) : (
               <div className="mt-4">
+                <p className="text-red-500 font-semibold">
+                  I ran out of OpenAI credits so this won't work (please check
+                  video!), but the tabular section will work.
+                </p>
                 <input
                   type="text"
                   placeholder="What type of synthetic image dataset are you looking for?"
@@ -270,7 +274,7 @@ export default function Home() {
                 </div>
                 <button
                   className="bg-indigo-400 mt-4 text-white px-6 py-2 rounded-lg font-semibold"
-                  onClick={handleGenerateImage}
+                  // onClick={handleGenerateImage}
                 >
                   {isLoading ? "Generating..." : "Generate"}
                 </button>
