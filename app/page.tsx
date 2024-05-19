@@ -8,7 +8,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY as string);
 
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
 
-const openai = new OpenAI();
+const openai = new OpenAI({ dangerouslyAllowBrowser: true });
 
 export default function Home() {
   const [dataType, setDataType] = useState("tabular");
